@@ -1,0 +1,114 @@
+* {
+  padding: 0;
+}
+
+body {
+  background-color: rgb(154, 202, 210);
+}
+
+#calendar {
+  overflow: hidden;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 5px 5px 20px rgba(0,0,0,0.12);
+}
+
+.header {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h3 {
+  margin: 0;
+}
+
+.header .skipBtn {
+  width: 80px;
+}
+
+.header .btn-group {
+  display: flex;
+}
+
+.header button {
+  width: 40px;
+  height: 28px;
+  border-radius: 14px;
+  border: 1px solid currentColor;
+  color: #aaa;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.header .btn-group .left {
+  border-radius: 14px 0 0 14px;
+}
+.header .btn-group .right {
+  border-radius: 0 14px 14px 0;
+  border-left: 0;
+}
+
+button:active {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.week {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+li {
+  list-style: none;
+  color: #888;
+}
+
+#content {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  grid-template-rows: repeat(6, 40px)
+}
+
+#content button {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.5s;
+  margin: 0 2px;
+}
+
+#content button:active {
+  background-color: rgb(203, 233, 249);
+  transition: 0s;
+}
+
+#content .grey {
+  color: #ccc 
+}
+
+#content .selected {
+  background-color: skyblue;
+  font-weight: bolder;
+  color: #fff;
+}
+
+#content .today {
+  font-weight: 900;
+  color: rgb(49, 175, 225) 
+}
+
+#content .selected.today {
+  font-weight: bolder;
+  color: #fff;
+}
