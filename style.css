@@ -4,6 +4,9 @@
 
 body {
   background-color: rgb(154, 202, 210);
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
 }
 
 #calendar {
@@ -27,7 +30,7 @@ body {
   margin: 0;
 }
 
-.header .skipBtn {
+.header .skipToToday {
   width: 80px;
 }
 

@@ -1,12 +1,12 @@
 const calendarGrid = 42   // 7 * 6 grid
-const date = new Date()
+let date = new Date()
 
-// 判断日期是否为闰年
+// 传入一个整数，判断某一年是否为闰年
 function isLeap(year) {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
 }
 
-// 获取 月份 有几天
+// 获取某月有几天
 function getDays(year, month) {
   const feb = isLeap(year) ? 29 : 28
   const daysPerMonth = [31, feb, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -45,6 +45,7 @@ function generateCalendar(date) {
   // 1号是星期几
   const weekIndex = new Date(`${year}/${month}/1`).getDay() // 0-6
 
+  // 解构赋值
   const {
     year: lastYear,
     month: lastMonth,
@@ -101,8 +102,9 @@ function renderCalendar(create = false) {
     calendarData.forEach(item => {
       const button = document.createElement('button')
       
+      const dateString = `${item.year}/${item.month}/${item.day}`
       // 设置属性
-      button.setAttribute('date', `${item.year}/${item.month}/${item.day}`)
+      button.setAttribute('date', dateString)
       button.innerText = item.day
 
       // 添加样式
@@ -113,7 +115,7 @@ function renderCalendar(create = false) {
       // 添加监听
       button.addEventListener('click', () => {
         selectDate(button)
-        console.log(getSelectedDate())
+        console.log(dateString)
       })
 
       fragment.appendChild(button)
@@ -177,18 +179,19 @@ function selectDate(button) {
   renderCalendar()
 }
 
-// 
+// 获取选择的日期
 function getSelectedDate() {
   const selectedBtn = document.querySelector('#content button.selected')
   return selectedBtn.getAttribute('date')
 }
 
-document.querySelector('.left').addEventListener('click', () => {
-  changeMonth('last')
-})
-document.querySelector('.right').addEventListener('click', () => {
-  changeMonth('next')
-})
+document.querySelector('.left').onclick = () => changeMonth('last')
+document.querySelector('.right').onclick = () => changeMonth('next')
+document.querySelector('.skipToToday').onclick = () => {
+  date = new Date()
+  renderCalendar()
+}
+
 
 window.onload = () => {
   renderCalendar(true)
